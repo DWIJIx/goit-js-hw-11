@@ -8,51 +8,59 @@ import Notiflix from 'notiflix';
 
 const refs = {
     formEl: document.querySelector('.search-form'),
-    divEl: document.querySelector('.gallery')
+    divEl: document.querySelector('.gallery'),
+    loadMoreBtn: document.querySelector('.load-more')
 }
 
 refs.formEl.addEventListener('submit', onSearch);
 
 function onSearch(evt) {
     evt.preventDefault();
-    clearMarkup();
+  clearMarkup();
+  refs.loadMoreBtn.classList.remove("is-hidden")
     const inputValue = evt.currentTarget.elements.searchQuery.value;
     // console.dir(inputValue)
 
-    getImeges(inputValue)
-            .then(data => console.log(data))
+  getImeges(inputValue)
+    .then(data => {
+      console.log(data);
+       if (data.hits.length === 0) {
+                Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.')
+       } else {
+         createMarkup(data.hits)
+       }
+      
+     }
+      );
+  
+  
     }
 
 
-// function createMarkup (dataArray) {
-//     const oneMarkup = obj => {
-//         if (dataArray.length < 2) {
-//             const languagesList = Object.values(dataArray[0].languages)
-//             return `
-//             <li class = "list_item">
-//                 <h2 class = "list_item_title">
-//                      <img src="${obj.flags.svg}" alt="${obj.name.common}" width = 70 class = "list_item_img">
-//                     ${obj.name.common}
-//                 </h2>
-//                 <h3>Capital:   <span class = "list_item_span">${obj.capital}</span></h3>
-//                 <h3>Population:   <span class = "list_item_span">${obj.population}</span></h3>
-//                 <h3>Languages:   <span class = "list_item_span">${languagesList}</span></h3>
-//             </li>
-//             `;
-//         } else {
-//             return `
-//              <li class = "list_item">
-//                 <h3>
-//                     <img src="${obj.flags.svg}" alt="${obj.name.common}" width = 40>
-//                     ${obj.name.common}
-//                 </h3>
-//             </li>
-//             `;
-//         }
-//     }
-//     const markup = dataArray.map(oneMarkup).join('');
-//     refs.ulContiner.insertAdjacentHTML('afterbegin', markup)
-// }
+function createMarkup (dataArray) {
+    const oneMarkup = obj => {
+        return `<div class="photo-card">
+            <img src="${obj.webformatURL}" alt="${obj.tags}" loading="lazy" />
+              <div class="info">
+                <p class="info-item">
+                 <b>${obj.likes}</b>
+                </p>
+                <p class="info-item">
+                  <b>${obj.views}</b>
+                </p>
+                <p class="info-item">
+                  <b>${obj.comments}</b>
+                </p>
+                <p class="info-item">
+                  <b>${obj.downloads}</b>
+                </p>
+              </div>
+          </div>`;
+        }
+
+    const markup = dataArray.map(oneMarkup).join('');
+    refs.divEl.insertAdjacentHTML('afterbegin', markup)
+}
 
 function clearMarkup() {
     refs.divEl.innerHTML = ''

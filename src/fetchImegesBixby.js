@@ -6,13 +6,7 @@ const axios = require('axios').default;
 
 export default function getImeges(name) {
     return fetch(`${BASE_URL}/?key=${KEY}&q=${name}&image_type=photo&orientation=horizontal&safesearch=true`)
-        .then(resp => {
-            
-            if (!resp.ok) {
-                Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.')
-            }
-           return resp.json()
-        })
+        .then(resp => resp.json())
         .catch(err => console.error(err))   
 }
 
