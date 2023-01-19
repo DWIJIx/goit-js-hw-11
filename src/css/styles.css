@@ -69,18 +69,17 @@ body {
 }
 
 .button {
-    background-color: #6e6969;
-    color: white;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 12px;
-    
-    align-items: center;
-    letter-spacing: 0.06em;
+  background-color: #6e6969;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  align-items: center;
+  letter-spacing: 0.06em;
     /* width: auto; */
-    padding: 3px 5px;
-    border-radius: 4px;
-    border-style: hidden;
+  padding: 3px 5px;
+  border-radius: 4px;
+  border-style: hidden;
 }
 
 .button:hover{

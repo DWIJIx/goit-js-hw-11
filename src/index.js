@@ -16,8 +16,6 @@ const pixabayApiService = new PixabayApiService();
 refs.formEl.addEventListener('submit', onSubmit);
 refs.loadMoreBtn.addEventListener('click', onLoadMore)
 
- 
-
 function onSubmit(evt) {
   evt.preventDefault();
   refs.loadMoreBtn.classList.add('is-hidden')
