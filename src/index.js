@@ -41,7 +41,6 @@ function onSubmit(evt) {
        refs.loadMoreBtn.classList.remove('is-hidden')
        checkTotalHits(data);
       }
-    
   })
  
 }
@@ -68,23 +67,23 @@ function createMarkup (dataArray) {
         }
 
     const markup = dataArray.map(oneMarkup).join('');
-    refs.divEl.insertAdjacentHTML('beforeend', markup)
+    refs.divEl.insertAdjacentHTML('beforeend', markup)  
 }
 
 function onLoadMore() {
    pixabayApiService.getImeges().then(data => {
-     
-    //  console.log(data);
-
-
-    //  console.log(pixabayApiService.page);
-    //  console.log(pixabayApiService.perPage);
-    //  console.log(data.totalHits);
-     
-    //  console.log(mult)
      createMarkup(data.hits);
      checkTotalHits(data);
 
+     // Плавне прокручування: ================================
+     const { height: cardHeight } = document
+    .querySelector(".gallery")
+    .firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+    top: cardHeight * 2,
+    behavior: "smooth",
+});
     
     
   })
@@ -102,12 +101,4 @@ function checkTotalHits(data) {
      }
 }
 
-// Плавне прокручування: ================================
-// const { height: cardHeight } = document
-//   .querySelector(".gallery")
-//   .firstElementChild.getBoundingClientRect();
 
-// window.scrollBy({
-//   top: cardHeight * 2,
-//   behavior: "smooth",
-// });
