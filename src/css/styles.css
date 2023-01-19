@@ -19,31 +19,15 @@ body {
   margin-bottom: 16px;
 }
 
-.list_item {
-  list-style: none;
-  padding-left: 0px;
-
-}
-.list_item_span {
-  font-weight: 400;
-}
-
-.list_item_title {
-  font-size: 40px;
-  display: flex;
-}
-.list_item_img {
-  margin-right: 10px;
-}
-
-ul {
-  padding: 0;
-}
-h2, h3 {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
 .is-hidden {
   display: none;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.load-more {
+
 }
