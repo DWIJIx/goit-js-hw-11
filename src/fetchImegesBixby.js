@@ -21,12 +21,11 @@ export default class PixabayApiService {
         }
     }
 
- 
-    // Функція збільшення значення this.page
+     // Функція збільшення значення this.page
     incrementPage() {
         this.page += 1;
     }
-
+    // Функція оновлення значення this.page
     resetPage() {
         this.page = 1
     }
@@ -52,21 +51,3 @@ export default class PixabayApiService {
 //         this.inputValue = newValue (перезаписуємо значення в конструкторі)
 // }
 //     значення value приходить з зовн.коду через pixabayApiService.value
-    
-
-
-// export default function getImeges(name) {
-// axios.get(`${BASE_URL}/?key=${KEY}&q=${name}&image_type=photo&orientation=horizontal&safesearch=true`)
-//   .then(function (response) {
-//     // handle success
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     // handle error
-//     console.log(error);
-//   })
-//   .then(function () {
-//     // always executed
-//   });
-// }
-
